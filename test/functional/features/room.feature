@@ -14,3 +14,13 @@ Feature: Operation for rooms
     Scenario: Get rooms
         When I GET "/rooms"
         Then response status is "200"
+
+    Scenario: Failure to create a room
+        When I POST "/rooms" with
+        """
+            {
+                "name": "",
+                "description": "History of Coca 2"
+            }
+        """
+        Then response status is "400"
